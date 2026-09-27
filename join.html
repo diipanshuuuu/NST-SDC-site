@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Join NST SDC — Register to become part of the NST Student Developer Club community." />
+  <title>Join NST SDC — Registration</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="shortcut icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('nst_theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    /* Join Page Styles */
+
+    .join-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient orbs for join page */
+    .join-page__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: orbFloat 12s ease-in-out infinite alternate;
+    }
+
+    .join-page__orb--1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(26, 115, 232, 0.14) 0%, transparent 65%);
+      top: -100px;
+      right: -100px;
+    }
+
+    .join-page__orb--2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(77, 163, 255, 0.12) 0%, transparent 65%);
+      bottom: -80px;
+      left: -100px;
+      animation-delay: -4s;
+    }
+
+    .join-page__orb--3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 65%);
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-delay: -8s;
+    }
+
+    .join-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 960px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(26, 115, 232, 0.04);
+    }
+
+    /* Left panel */
+
+    .join-info {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(26, 115, 232, 0.04), rgba(77, 163, 255, 0.03));
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .join-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+      opacity: 0.6;
+    }
+
+    .join-info .badge {
+      margin-bottom: 24px;
+      align-self: flex-start;
+    }
+
+    .join-info h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 30%, #4da3ff 70%, #1a73e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .join-info > p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .join-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .perk__icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(77, 163, 255, 0.06));
+      border: 1px solid rgba(26, 115, 232, 0.15);
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+
+    .perk h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .perk p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Right panel */
+
+    .join-form-panel {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .join-form-panel h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .join-form-panel > p {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(26, 115, 232, 0.4);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.08), 0 0 20px rgba(26, 115, 232, 0.04);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+
+    .form-group select option {
+      background: #111;
+      color: var(--text);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit {
+      margin-top: 8px;
+    }
+
+    .form-submit .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 15px 28px;
+      font-size: 0.95rem;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-footer p {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .form-footer a {
+      color: var(--accent-start);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Success state */
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+
+    .form-success__icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(26, 115, 232, 0.12), rgba(77, 163, 255, 0.08));
+      border: 1px solid rgba(26, 115, 232, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes successPop {
+      0%   { transform: scale(0); opacity: 0; }
+      60%  { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .form-success h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #4da3ff, #1a73e8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-success p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 360px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Top bar & back link */
+
+    .join-top-bar {
+      position: fixed;
+      top: 20px;
+      left: 28px;
+      right: 28px;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--text);
+    }
+
+    .back-link svg {
+      transition: transform 0.2s;
+    }
+
+    .back-link:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
+      .join-top-bar {
+        left: 20px;
+        right: 20px;
+      }
+
+      .join-container {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
+
+      .join-info {
+        padding: 40px 32px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .join-form-panel {
+        padding: 40px 32px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .join-info h1 {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .join-info {
+        padding: 32px 24px;
+      }
+
+      .join-form-panel {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="join-top-bar">
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <a href="index.html" class="navbar__logo" style="font-size: 1.05rem;">
+        <img src="logo.png" alt="NST SDC Logo" class="navbar__logo-img" style="width: 30px; height: 30px;" />
+        <span>NST <span>SDC</span></span>
+      </a>
+      <a href="index.html" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Home
+      </a>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+      <span class="theme-toggle__track">
+        <span class="theme-toggle__slot theme-toggle__slot--sun">
+          <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M6.7 17.3l-1.77 1.77M19.07 4.93l-1.77 1.77" />
+          </svg>
+        </span>
+        <span class="theme-toggle__slot theme-toggle__slot--moon">
+          <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6.5 6.5 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+        </span>
+        <span class="theme-toggle__thumb"></span>
+      </span>
+    </button>
+  </div>
+
+  <section class="join-page">
+    <!-- Ambient orbs -->
+    <div class="join-page__orb join-page__orb--1" aria-hidden="true"></div>
+    <div class="join-page__orb join-page__orb--2" aria-hidden="true"></div>
+    <div class="join-page__orb join-page__orb--3" aria-hidden="true"></div>
+
+    <div class="join-container" data-animate>
+      <!-- Left: Info panel -->
+      <div class="join-info">
+        <span class="badge">
+          <span class="badge__dot"></span>
+          Applications Open
+        </span>
+
+        <h1>Join the<br />NST SDC Squad</h1>
+        <p>
+          Become part of Newton School of Technology's most vibrant developer community.
+          Build projects, learn from peers, and level up your career.
+        </p>
+
+        <div class="join-perks">
+          <div class="perk">
+            <div class="perk__icon">🚀</div>
+            <div>
+              <h4>Ship Real Projects</h4>
+              <p>Work on production-grade apps with teams of builders.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk__icon">🧠</div>
+            <div>
+              <h4>Learn from the Best</h4>
+              <p>Weekly tech talks, workshops, and 1-on-1 mentorship.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk__icon">🏅</div>
+            <div>
+              <h4>Compete & Win</h4>
+              <p>Represent NST at hackathons and coding competitions.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk__icon">🌍</div>
+            <div>
+              <h4>Open Source Impact</h4>
+              <p>Contribute to projects used by developers worldwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form panel -->
+      <div class="join-form-panel" id="formPanel">
+        <h2>Create your profile</h2>
+        <p>Takes less than 2 minutes.</p>
+
+        <form id="joinForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Doe" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@nst.edu.in" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="year">Year</label>
+              <select id="year" name="year" required>
+                <option value="" disabled selected>Select year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="domain">Preferred Domain</label>
+              <select id="domain" name="domain" required>
+                <option value="" disabled selected>Select domain</option>
+                <option value="fullstack">Full-Stack Web</option>
+                <option value="aiml">AI / Machine Learning</option>
+                <option value="opensource">Open Source</option>
+                <option value="devops">DevOps & Cloud</option>
+                <option value="uiux">UI/UX Design</option>
+                <option value="cp">Competitive Programming</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="github">GitHub Username <span style="color: var(--text-dim); text-transform: none; font-weight: 400;">(optional)</span></label>
+            <input type="text" id="github" name="github" placeholder="johndoe" />
+          </div>
+
+          <div class="form-group">
+            <label for="motivation">Why do you want to join?</label>
+            <textarea id="motivation" name="motivation" placeholder="Tell us what excites you about tech..." rows="3"></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn--primary btn--lg">
+              Submit Application
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <div class="form-footer">
+            <p>By joining you agree to our <a href="#">Code of Conduct</a>.</p>
+          </div>
+        </form>
+
+        <!-- Success state (hidden by default) -->
+        <div class="form-success" id="formSuccess">
+          <div class="form-success__icon">🎉</div>
+          <h2>You're in!</h2>
+          <p>
+            Welcome to the squad. We'll send you an onboarding email with next steps,
+            Discord invite, and your domain group details.
+          </p>
+          <a href="index.html" class="btn btn--outline btn--lg">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    ;(function () {
+      'use strict'
+
+      /* Scroll animation */
+      const animatedEls = document.querySelectorAll('[data-animate]')
+      const scrollObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible')
+              scrollObserver.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.1 }
+      )
+      animatedEls.forEach((el) => scrollObserver.observe(el))
+
+      /* Form handling */
+      const form = document.getElementById('joinForm')
+      const formPanel = document.getElementById('formPanel')
+      const formSuccess = document.getElementById('formSuccess')
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        /* Basic validation */
+        const required = form.querySelectorAll('[required]')
+        let valid = true
+
+        required.forEach((input) => {
+          if (!input.value.trim()) {
+            input.style.borderColor = 'rgba(255, 80, 80, 0.5)'
+            valid = false
+            input.addEventListener('input', () => {
+              input.style.borderColor = ''
+            }, { once: true })
+          }
+        })
+
+        const email = form.querySelector('#email')
+        if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+          email.style.borderColor = 'rgba(255, 80, 80, 0.5)'
+          valid = false
+        }
+
+        if (!valid) return
+
+        /* Simulate submission */
+        const submitBtn = form.querySelector('button[type="submit"]')
+        submitBtn.innerHTML = `
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="12"/></svg>
+            Submitting...
+          </span>`
+        submitBtn.disabled = true
+
+        setTimeout(() => {
+          form.style.display = 'none'
+          formSuccess.classList.add('active')
+        }, 1500)
+      })
+
+      /* Input focus glow effect */
+      const inputs = document.querySelectorAll('input, select, textarea')
+      inputs.forEach((input) => {
+        input.addEventListener('focus', () => {
+          input.closest('.form-group')?.classList.add('focused')
+        })
+        input.addEventListener('blur', () => {
+          input.closest('.form-group')?.classList.remove('focused')
+        })
+      })
+
+      /* Theme toggle */
+      const themeToggle = document.getElementById('themeToggle')
+      if (themeToggle) {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark'
+        themeToggle.setAttribute('aria-checked', currentTheme === 'light' ? 'true' : 'false')
+        themeToggle.addEventListener('click', () => {
+          const active = document.documentElement.getAttribute('data-theme') || 'dark'
+          const nextTheme = active === 'light' ? 'dark' : 'light'
+          document.documentElement.setAttribute('data-theme', nextTheme)
+          themeToggle.setAttribute('aria-checked', nextTheme === 'light' ? 'true' : 'false')
+          try {
+            localStorage.setItem('nst_theme', nextTheme)
+          } catch (e) {}
+        })
+      }
+    })()
+  </script>
+
+  <style>
+    .spin {
+      animation: spinAnim 1s linear infinite;
+    }
+    @keyframes spinAnim {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</body>
+</html>
