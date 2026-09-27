@@ -77,12 +77,11 @@ We love collaboration! Here’s how you can start contributing:
 ---
 
 ## **Connect with Us**
-- **Website**: [NST SDC]()
+- **Website**: [NST SDC](https://nst-sdc-site-ten.vercel.app)
 - **LinkedIn**: [NST Student Developer Club](https://www.linkedin.com/company/nst-sdc/)
 - **X.com**: [@NST_SDC](https://x.com/NSTSDC_)
 - **Instagram**: [@nst_sdc](https://www.instagram.com/devclub.nst/)
 - **Email**: support@nstsdc.org
-- 
 
 ---
 
