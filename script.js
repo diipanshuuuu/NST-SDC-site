@@ -7,9 +7,11 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (!prefersReducedMotion) {
-    // Animate hero items immediately
-    const heroItems = document.querySelectorAll('.hero__content [data-animate], .hero__content > *')
-    gsap.set(heroItems, { visibility: 'visible' })
+    // Reveal all elements immediately before animating so they don't stay hidden
+    gsap.set('[data-animate]', { visibility: 'visible' })
+    
+    // Animate hero items
+    const heroItems = document.querySelectorAll('.hero__content > *')
     gsap.from(heroItems, {
       autoAlpha: 0,
       y: 24,
@@ -19,12 +21,11 @@
       delay: 0.2
     })
 
-    // Animate sections on scroll
-    const sections = document.querySelectorAll('.section')
+    // Animate other sections on scroll
+    const sections = document.querySelectorAll('section:not(.hero), footer, .footer-cta')
     sections.forEach(sec => {
       const children = sec.querySelectorAll('[data-animate]')
-      if(children.length) {
-        gsap.set(children, { visibility: 'visible' })
+      if (children.length) {
         gsap.from(children, {
           autoAlpha: 0,
           y: 30,
