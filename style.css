@@ -6,32 +6,33 @@
 }
 
 :root {
-  --bg: #0F172A;
-  --bg-elevated: #1B2336;
-  --surface: #1E293B;
-  --border: rgba(71, 85, 105, 0.5);
-  --border-hover: rgba(148, 163, 184, 0.3);
+  /* Dark Mode Default - Modern SaaS */
+  --bg: #0B1120;
+  --bg-elevated: rgba(30, 41, 59, 0.4);
+  --surface: rgba(30, 41, 59, 0.7);
+  --border: rgba(71, 85, 105, 0.4);
+  --border-hover: rgba(56, 189, 248, 0.5);
   --text: #F8FAFC;
   --text-secondary: #94A3B8;
   --text-dim: #64748B;
-  --accent: #3B82F6;
-  --accent-hover: #2563EB;
+  --accent: #38BDF8;
+  --accent-hover: #0EA5E9;
   --green: #22C55E;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --radius: 12px;
+  --radius-lg: 20px;
 }
 
 [data-theme="light"] {
-  --bg: #FFFFFF;
-  --bg-elevated: #F8FAFC;
+  --bg: #FAFAFA;
+  --bg-elevated: rgba(255, 255, 255, 0.7);
   --surface: #F1F5F9;
   --border: rgba(226, 232, 240, 1);
-  --border-hover: rgba(148, 163, 184, 0.5);
+  --border-hover: rgba(56, 189, 248, 0.5);
   --text: #0F172A;
   --text-secondary: #475569;
   --text-dim: #94A3B8;
-  --accent: #2563EB;
-  --accent-hover: #1D4ED8;
+  --accent: #0EA5E9;
+  --accent-hover: #0284C7;
   --green: #16A34A;
 }
 
@@ -43,6 +44,25 @@ body {
   line-height: 1.7;
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle Aurora Background Lighting */
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15), transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.08), transparent 30%);
+  z-index: -1;
+  pointer-events: none;
+}
+[data-theme="light"] body::before {
+  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.1), transparent 50%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -50,10 +70,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.15;
+  background: linear-gradient(135deg, #F8FAFC 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-theme="light"] h1 {
+  background: linear-gradient(135deg, #0F172A 0%, #475569 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -171,6 +203,7 @@ a:focus, button:focus, input:focus {
 .theme-toggle:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .icon-sun, .icon-moon {
@@ -222,6 +255,7 @@ a:focus, button:focus, input:focus {
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: var(--glow);
   border: none;
   text-decoration: none;
 }
@@ -234,6 +268,7 @@ a:focus, button:focus, input:focus {
 .btn-primary:hover {
   background-color: var(--accent-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .btn-outline {
@@ -245,6 +280,7 @@ a:focus, button:focus, input:focus {
 .btn-outline:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 /* Hero Section */
@@ -363,11 +399,13 @@ a:focus, button:focus, input:focus {
   border-radius: var(--radius-lg);
   padding: 24px;
   transition: all 0.2s ease;
+  box-shadow: var(--glow);
 }
 
 .bento-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .card-icon {
@@ -429,11 +467,13 @@ a:focus, button:focus, input:focus {
   border-radius: var(--radius-lg);
   padding: 24px;
   transition: all 0.2s ease;
+  box-shadow: var(--glow);
 }
 
 .initiative-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .initiative-number {
@@ -472,11 +512,13 @@ a:focus, button:focus, input:focus {
   border-radius: var(--radius-lg);
   padding: 24px;
   transition: all 0.2s ease;
+  box-shadow: var(--glow);
 }
 
 .project-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .project-badge {
@@ -511,11 +553,13 @@ a:focus, button:focus, input:focus {
   padding: 24px;
   text-align: center;
   transition: all 0.2s ease;
+  box-shadow: var(--glow);
 }
 
 .community-card:hover {
   border-color: var(--border-hover);
   transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
 }
 
 .community-card .card-icon {

@@ -3,26 +3,46 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Scroll Animations & prefers-reduced-motion
+    // 1. Scroll Animations & prefers-reduced-motion with GSAP
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const animateElements = document.querySelectorAll('[data-animate]');
     
-    if (prefersReducedMotion) {
-      animateElements.forEach(el => el.classList.add('visible'));
+    if (prefersReducedMotion || typeof gsap === 'undefined') {
+      document.querySelectorAll('[data-animate]').forEach(el => el.classList.add('visible'));
     } else {
-      const animateObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Prevent FOUC by making all animate elements visible (GSAP will handle the alpha from 0)
+      gsap.set('[data-animate]', { visibility: 'visible' });
+
+      // Animate hero items immediately
+      const heroItems = document.querySelectorAll('.hero-section [data-animate], .hero-title, .hero-subtitle, .hero-actions, .stat-item');
+      gsap.from(heroItems, {
+        autoAlpha: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.1
       });
 
-      animateElements.forEach(el => animateObserver.observe(el));
+      // Animate other sections on scroll
+      const sectionsToAnimate = document.querySelectorAll('section:not(.hero-section), .footer');
+      sectionsToAnimate.forEach(sec => {
+        const children = sec.querySelectorAll('.section-header > *, .bento-card, .initiative-card, .project-card, .community-card, .footer-col');
+        if (children.length) {
+          gsap.from(children, {
+            autoAlpha: 0,
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: sec,
+              start: 'top 85%'
+            }
+          });
+        }
+      });
     }
 
     // 2. Sticky Navbar
