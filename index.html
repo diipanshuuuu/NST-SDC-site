@@ -1,442 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NST Student Developer Club — A vibrant community of tech enthusiasts, developers, and innovators at Newton School of Technology." />
-  <title>NST SDC — Student Developer Club | Newton School of Technology</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png" />
-  <link rel="shortcut icon" type="image/png" href="logo.png" />
-  <link rel="apple-touch-icon" href="logo.png" />
-
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    (function () {
-      const savedTheme = localStorage.getItem('nst_theme');
-      if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NST SDC — Student Developer Club | Newton School of Technology</title>
+    <meta name="description" content="NST Student Developer Club — A vibrant community of tech enthusiasts, developers, and innovators at Newton School of Technology.">
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        const theme = localStorage.getItem('nst_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="navbar__logo">
-      <img src="logo.png" alt="NST SDC Logo" class="navbar__logo-img" />
-      <span>NST <span>SDC</span></span>
-    </a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <img src="logo.png" alt="NST SDC Logo" class="nav-logo">
+                <span class="nav-brand-text">NST SDC</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#domains" class="nav-link">What We Do</a>
+                <a href="#initiatives" class="nav-link">Initiatives</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#community" class="nav-link">Community</a>
+            </div>
 
-    <ul class="navbar__links" id="navLinks">
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#domains">What We Do</a></li>
-      <li><a href="#initiatives">Initiatives</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#community">Community</a></li>
-      <li class="navbar__mobile-cta"><a href="join.html" class="btn btn--primary">Join NST SDC</a></li>
-    </ul>
-
-    <div class="navbar__actions">
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
-        <span class="theme-toggle__track">
-          <span class="theme-toggle__slot theme-toggle__slot--sun">
-            <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4.5" />
-              <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M6.7 17.3l-1.77 1.77M19.07 4.93l-1.77 1.77" />
-            </svg>
-          </span>
-          <span class="theme-toggle__slot theme-toggle__slot--moon">
-            <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-            </svg>
-          </span>
-          <span class="theme-toggle__thumb"></span>
-        </span>
-      </button>
-
-      <a href="join.html" class="btn btn--primary navbar__cta">Join NST SDC</a>
-    </div>
-
-    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
-    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
-    <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
-
-    <div class="hero__content" data-animate>
-      <span class="badge">
-        <span class="badge__dot"></span>
-        NST Student Developer Club
-      </span>
-
-      <h1 class="hero__headline">
-        LEARN<span class="dot">.</span>
-        BUILD<span class="dot">.</span>
-        SHARE<span class="dot">.</span>
-      </h1>
-
-      <p class="hero__sub">
-        The best way to learn is by doing, and the best way to grow is by sharing.
-        We're a vibrant community of tech enthusiasts, developers, and innovators at Newton School of Technology.
-      </p>
-
-      <div class="hero__actions">
-        <a href="join.html" class="btn btn--primary btn--lg">
-          Get Involved
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <a href="#projects" class="btn btn--outline btn--lg">
-          Explore Projects
-        </a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="stat-pill" data-animate>
-          <strong>100+</strong><span>Active Members</span>
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <a href="join.html" class="btn btn-primary">Join NST SDC</a>
+                <button class="menu-toggle" aria-label="Open Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
         </div>
-        <div class="stat-pill" data-animate>
-          <strong>20+</strong><span>Open Source Projects</span>
-        </div>
-        <div class="stat-pill" data-animate>
-          <strong>10+</strong><span>Events / Year</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- About Section -->
-  <section class="section" id="about">
-    <div class="section__header" data-animate>
-      <span class="section__tag">Our Mission</span>
-      <h2 class="section__title">Collaboration. Innovation.<br />Open Source.</h2>
-      <p class="section__desc">
-        NST Student Developer Club is a vibrant community of tech enthusiasts, developers, and innovators
-        striving to learn, build, and share amazing projects. We foster a culture of <em>collaboration,
-        innovation, and open-source contributions</em> among students, preparing them to excel in
-        real-world challenges and make a mark in the tech industry.
-      </p>
-    </div>
-  </section>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container" data-animate>
+                <div class="badge-wrapper">
+                    <span class="badge">
+                        <span class="dot-green"></span>
+                        NST Student Developer Club
+                    </span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Build together.<br>
+                    Ship with impact.
+                </h1>
+                
+                <p class="hero-subtitle">
+                    We're a community of student developers at Newton School of Technology. We learn by building real projects, contribute to open source, and grow together.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="join.html" class="btn btn-primary">
+                        Get Involved
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#projects" class="btn btn-outline">Explore Projects</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">100+</span>
+                        <span class="stat-label">Active Members</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">20+</span>
+                        <span class="stat-label">Open Source Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">10+</span>
+                        <span class="stat-label">Events / Year</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- What We Do / Bento Grid -->
-  <section class="section" id="domains">
-    <div class="section__header" data-animate>
-      <span class="section__tag">What We Do</span>
-      <h2 class="section__title">Our Core Activities</h2>
-      <p class="section__desc">
-        From open-source contributions to hackathon wins — we provide a platform for students to
-        collaborate, learn, and grow together in the tech space.
-      </p>
-    </div>
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header" data-animate>
+                    <span class="section-tag">Our Mission</span>
+                    <h2 class="section-title">Collaboration. Innovation. Open Source.</h2>
+                    <p class="section-description">
+                        NST Student Developer Club is a vibrant community of tech enthusiasts, developers, and innovators striving to learn, build, and share amazing projects. We foster a culture of collaboration, innovation, and open-source contributions among students, preparing them to excel in real-world challenges and make a mark in the tech industry.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <div class="bento">
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4da3ff"/><stop offset="100%" stop-color="#1a73e8"/></linearGradient></defs>
-            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
-          </svg>
-        </div>
-        <h3>Open-Source Projects</h3>
-        <p>Build and contribute to impactful projects that matter. From web apps to AI/ML tools — we ship code, write docs, fix bugs, and build tools the world depends on.</p>
-      </div>
+        <section id="domains" class="domains-section">
+            <div class="container">
+                <div class="section-header" data-animate>
+                    <span class="section-tag">What We Do</span>
+                    <h2 class="section-title">Our Core Activities</h2>
+                    <p class="section-description">
+                        From open-source contributions to hackathon wins — we provide a platform for students to collaborate, learn, and grow together in the tech space.
+                    </p>
+                </div>
 
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8.24 9.93A4 4 0 0 1 12 2"/><circle cx="12" cy="14" r="4"/><path d="M16 22h-1a3 3 0 0 1-3-3"/><path d="M8 22h1a3 3 0 0 0 3-3"/><path d="m21 8-2 2-1.5-3.5"/><path d="m3 8 2 2 1.5-3.5"/>
-          </svg>
-        </div>
-        <h3>Workshops &amp; Webinars</h3>
-        <p>Learn the latest tech trends and tools through hands-on sessions led by experienced peers and industry mentors.</p>
-      </div>
+                <div class="bento-grid">
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        <h3 class="card-title">Open-Source Projects</h3>
+                        <p class="card-description">Build and contribute to impactful projects that matter. From web apps to AI/ML tools — we ship code, write docs, fix bugs, and build tools the world depends on.</p>
+                    </div>
 
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 22V8a2 2 0 0 0-2-2H6v6h2"/><path d="M14 22V8a2 2 0 0 1 2-2h2v6h-2"/>
-          </svg>
-        </div>
-        <h3>Competitions &amp; Hackathons</h3>
-        <p>Showcase your skills and solve real-world problems. We organize coding challenges and compete at external hackathons.</p>
-      </div>
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                        <h3 class="card-title">Workshops & Webinars</h3>
+                        <p class="card-description">Learn the latest tech trends and tools through hands-on sessions led by experienced peers and industry mentors.</p>
+                    </div>
 
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <h3>Mentorship Programs</h3>
-        <p>Collaborate with experienced peers and mentors. Get 1-on-1 guidance to write quality code and grow as an engineer.</p>
-      </div>
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"></path></svg>
+                        <h3 class="card-title">Competitions & Hackathons</h3>
+                        <p class="card-description">Showcase your skills and solve real-world problems. We organize coding challenges and compete at external hackathons.</p>
+                    </div>
 
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
-          </svg>
-        </div>
-        <h3>Knowledge Sharing</h3>
-        <p>Encourage continuous learning and collaboration. Share insights, write blogs, and present tech talks to the community.</p>
-      </div>
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <h3 class="card-title">Mentorship Programs</h3>
+                        <p class="card-description">Collaborate with experienced peers and mentors. Get 1-on-1 guidance to write quality code and grow as an engineer.</p>
+                    </div>
 
-      <div class="bento__card" data-animate data-spotlight>
-        <span class="bento__accent"></span>
-        <div class="bento__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-          </svg>
-        </div>
-        <h3>Our Tech Stack</h3>
-        <p>Modern technologies powering our community projects and learning tracks.</p>
-        <div class="bento__tech-tags">
-          <span>React</span><span>Node.js</span><span>Python</span><span>Docker</span><span>MongoDB</span><span>C++</span>
-        </div>
-      </div>
-    </div>
-  </section>
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <h3 class="card-title">Knowledge Sharing</h3>
+                        <p class="card-description">Encourage continuous learning and collaboration. Share insights, write blogs, and present tech talks to the community.</p>
+                    </div>
 
-  <!-- Initiatives Section -->
-  <section class="section" id="initiatives">
-    <div class="section__header" data-animate>
-      <span class="section__tag">Our Initiatives</span>
-      <h2 class="section__title">Driving Real Impact</h2>
-      <p class="section__desc">
-        From Hacktoberfest to GSoC prep — our initiatives are designed to give students real-world experience
-        and open-source credibility.
-      </p>
-    </div>
+                    <div class="bento-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>
+                        <h3 class="card-title">Our Tech Stack</h3>
+                        <p class="card-description">Modern technologies powering our community projects and learning tracks.</p>
+                        <div class="tag-list">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">C++</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="projects-grid">
-      <div class="project-card" data-animate>
-        <div class="project-card__number">01</div>
-        <h3>Hacktoberfest</h3>
-        <p>Encouraging contributions to open-source projects. We host internal events and workshops for beginners to make their first PRs.</p>
-        <div class="project-card__tags">
-          <span>Open Source</span><span>Git</span><span>Community</span>
-        </div>
-      </div>
-      <div class="project-card" data-animate>
-        <div class="project-card__number">02</div>
-        <h3>GSoC Preparation</h3>
-        <p>Guiding students to contribute to open-source organizations. Focused mentorship for writing quality code and proposals.</p>
-        <div class="project-card__tags">
-          <span>Google</span><span>Open Source</span><span>Mentorship</span>
-        </div>
-      </div>
-      <div class="project-card" data-animate>
-        <div class="project-card__number">03</div>
-        <h3>Student Projects</h3>
-        <p>Showcase projects created by our members covering web development, mobile apps, AI/ML, and more. Promoting collaboration and idea exchange.</p>
-        <div class="project-card__tags">
-          <span>React</span><span>Python</span><span>AI/ML</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section id="initiatives" class="initiatives-section">
+            <div class="container">
+                <div class="section-header" data-animate>
+                    <span class="section-tag">Our Initiatives</span>
+                    <h2 class="section-title">Driving Real Impact</h2>
+                    <p class="section-description">
+                        From Hacktoberfest to GSoC prep — our initiatives are designed to give students real-world experience and open-source credibility.
+                    </p>
+                </div>
 
-  <!-- Student Creations Section -->
-  <section class="section" id="projects">
-    <div class="section__header" data-animate>
-      <span class="section__tag">What We've Built</span>
-      <h2 class="section__title">Student Creations</h2>
-      <p class="section__desc">
-        Real-world platforms, developer tooling, and productivity applications engineered and shipped
-        by members of NST SDC. Click on any project to explore its GitHub repository.
-      </p>
-    </div>
+                <div class="initiatives-grid">
+                    <div class="initiative-card" data-animate>
+                        <span class="initiative-number">01</span>
+                        <h3 class="initiative-title">Hacktoberfest</h3>
+                        <p class="initiative-desc">contributions to open source, workshops for first PRs.</p>
+                        <div class="tag-list">
+                            <span class="tag">Open Source</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Community</span>
+                        </div>
+                    </div>
+                    
+                    <div class="initiative-card" data-animate>
+                        <span class="initiative-number">02</span>
+                        <h3 class="initiative-title">GSoC Preparation</h3>
+                        <p class="initiative-desc">guiding students to contribute to organizations.</p>
+                        <div class="tag-list">
+                            <span class="tag">Google</span>
+                            <span class="tag">Open Source</span>
+                            <span class="tag">Mentorship</span>
+                        </div>
+                    </div>
 
-    <div class="creations-grid">
-      <a href="https://github.com/nst-sdc/Open-Source-Tracker-NST" target="_blank" rel="noopener noreferrer" class="creation-card" data-animate>
-        <span class="creation-card__accent"></span>
-        <div class="creation-card__header">
-          <span class="creation-card__badge">Kubernetes Platform</span>
-          <span class="creation-card__link-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </span>
-        </div>
-        <h3>Open Source Tracker</h3>
-        <p>A live leaderboard tracking students' open-source PRs and issues across GitHub, with automatic spam filtering and Kubernetes-scheduled rankings.</p>
-        <div class="creation-card__tags">
-          <span>Next.js</span><span>Kubernetes</span><span>Redis</span><span>GitHub API</span>
-        </div>
-      </a>
+                    <div class="initiative-card" data-animate>
+                        <span class="initiative-number">03</span>
+                        <h3 class="initiative-title">Student Projects</h3>
+                        <p class="initiative-desc">showcase projects in web, mobile, AI/ML.</p>
+                        <div class="tag-list">
+                            <span class="tag">React</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <a href="https://github.com/nst-sdc/Campus-Buddy" target="_blank" rel="noopener noreferrer" class="creation-card" data-animate>
-        <span class="creation-card__accent"></span>
-        <div class="creation-card__header">
-          <span class="creation-card__badge">Campus Web App</span>
-          <span class="creation-card__link-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </span>
-        </div>
-        <h3>Campus Buddy</h3>
-        <p>Centralized event discovery platform for NST students and clubs featuring one-click RSVP, Google Calendar sync, and volunteer management.</p>
-        <div class="creation-card__tags">
-          <span>Full-Stack</span><span>Google OAuth</span><span>Event Mgmt</span><span>Calendar Sync</span>
-        </div>
-      </a>
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header" data-animate>
+                    <span class="section-tag">What We've Built</span>
+                    <h2 class="section-title">Student Creations</h2>
+                    <p class="section-description">
+                        Real-world platforms, developer tooling, and productivity applications engineered and shipped by members of NST SDC. Click on any project to explore its GitHub repository.
+                    </p>
+                </div>
 
-      <a href="https://github.com/nst-sdc/StackMate" target="_blank" rel="noopener noreferrer" class="creation-card" data-animate>
-        <span class="creation-card__accent"></span>
-        <div class="creation-card__header">
-          <span class="creation-card__badge">Developer Tool</span>
-          <span class="creation-card__link-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </span>
-        </div>
-        <h3>StackMate VS Code Extension</h3>
-        <p>A multi-purpose IDE extension embedding a React webview inside VS Code for quick notes, JSON validation, Stack Overflow shortcuts, and ESLint checks.</p>
-        <div class="creation-card__tags">
-          <span>VS Code API</span><span>React</span><span>TypeScript</span><span>Webpack</span>
-        </div>
-      </a>
+                <div class="projects-list">
+                    <a href="https://github.com/nst-sdc/Open-Source-Tracker-NST" target="_blank" rel="noopener noreferrer" class="project-card" data-animate>
+                        <span class="badge project-badge">Kubernetes Platform</span>
+                        <h3 class="project-title">Open Source Tracker</h3>
+                        <p class="project-desc">A live leaderboard tracking students' open-source PRs and issues across GitHub, with automatic spam filtering and Kubernetes-scheduled rankings.</p>
+                        <div class="tag-list">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">GitHub API</span>
+                        </div>
+                    </a>
 
-      <a href="https://github.com/nst-sdc/Screentime-recoder" target="_blank" rel="noopener noreferrer" class="creation-card" data-animate>
-        <span class="creation-card__accent"></span>
-        <div class="creation-card__header">
-          <span class="creation-card__badge">AI &amp; Productivity</span>
-          <span class="creation-card__link-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </span>
+                    <a href="https://github.com/nst-sdc/Campus-Buddy" target="_blank" rel="noopener noreferrer" class="project-card" data-animate>
+                        <span class="badge project-badge">Campus Web App</span>
+                        <h3 class="project-title">Campus Buddy</h3>
+                        <p class="project-desc">Centralized event discovery platform for NST students and clubs featuring one-click RSVP, Google Calendar sync, and volunteer management.</p>
+                        <div class="tag-list">
+                            <span class="tag">Full-Stack</span>
+                            <span class="tag">Google OAuth</span>
+                            <span class="tag">Event Mgmt</span>
+                            <span class="tag">Calendar Sync</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/nst-sdc/StackMate" target="_blank" rel="noopener noreferrer" class="project-card" data-animate>
+                        <span class="badge project-badge">Developer Tool</span>
+                        <h3 class="project-title">StackMate VS Code Extension</h3>
+                        <p class="project-desc">A multi-purpose IDE extension embedding a React webview inside VS Code for quick notes, JSON validation, Stack Overflow shortcuts, and ESLint checks.</p>
+                        <div class="tag-list">
+                            <span class="tag">VS Code API</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Webpack</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/nst-sdc/Screentime-recoder" target="_blank" rel="noopener noreferrer" class="project-card" data-animate>
+                        <span class="badge project-badge">AI & Productivity</span>
+                        <h3 class="project-title">Screen Time & Focus Analyzer</h3>
+                        <p class="project-desc">Privacy-focused study tracking via a browser extension. Uses AI to assess study focus, compute consistency scores, and render interactive activity heatmaps.</p>
+                        <div class="tag-list">
+                            <span class="tag">AI / ML</span>
+                            <span class="tag">Browser Extension</span>
+                            <span class="tag">Data Viz</span>
+                            <span class="tag">OAuth</span>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/nst-sdc/Personalized-Academic-Tracker" target="_blank" rel="noopener noreferrer" class="project-card" data-animate>
+                        <span class="badge project-badge">PWA Web App</span>
+                        <h3 class="project-title">Academic & Attendance Tracker</h3>
+                        <p class="project-desc">A smart, mobile-first progressive web app helping university students track coursework grades, monitor attendance minimums, and manage assignments.</p>
+                        <div class="tag-list">
+                            <span class="tag">React</span>
+                            <span class="tag">PWA</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="community-section">
+            <div class="container">
+                <div class="section-header" data-animate>
+                    <span class="section-tag">Get Involved</span>
+                    <h2 class="section-title">Join the Community. Make an Impact.</h2>
+                    <p class="section-description">
+                        Whether you're a complete beginner or a seasoned coder, there's a place for you here. Explore repositories, contribute to projects, and grow alongside the brightest minds at NST.
+                    </p>
+                </div>
+
+                <div class="community-grid">
+                    <div class="community-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <h4 class="community-title">Explore</h4>
+                        <p class="community-desc">Check out our repositories and look for beginner-friendly issues.</p>
+                    </div>
+
+                    <div class="community-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                        <h4 class="community-title">Fork & PR</h4>
+                        <p class="community-desc">Make meaningful contributions to our open-source projects.</p>
+                    </div>
+
+                    <div class="community-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <h4 class="community-title">Collaborate</h4>
+                        <p class="community-desc">Engage with members, propose new ideas, and help us improve.</p>
+                    </div>
+
+                    <div class="community-card" data-animate>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        <h4 class="community-title">Learn & Grow</h4>
+                        <p class="community-desc">Participate in workshops, events, and mentorship programs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="footer-cta" class="cta-section">
+            <div class="container" data-animate>
+                <h2>Ready to contribute?</h2>
+                <p>Explore our repositories for beginner-friendly issues, follow our contribution guidelines, and submit a pull request. Let's code, create, and contribute to make a difference!</p>
+                <a href="join.html" class="btn btn-primary">Join NST SDC</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#" class="nav-brand">
+                    <img src="logo.png" alt="NST SDC Logo" class="nav-logo">
+                    <span class="nav-brand-text">NST SDC</span>
+                </a>
+                <p>NST Student Developer Club — A vibrant community of tech enthusiasts, developers, and innovators at Newton School of Technology.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#domains">What We Do</a></li>
+                        <li><a href="#initiatives">Initiatives</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/company/nst-sdc/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://x.com/NSTSDC_" target="_blank" rel="noopener noreferrer">X</a></li>
+                        <li><a href="https://www.instagram.com/devclub.nst/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="mailto:support@nstsdc.org">Email</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <h3>Screen Time &amp; Focus Analyzer</h3>
-        <p>Privacy-focused study tracking via a browser extension. Uses AI to assess study focus, compute consistency scores, and render interactive activity heatmaps.</p>
-        <div class="creation-card__tags">
-          <span>AI / ML</span><span>Browser Extension</span><span>Data Viz</span><span>OAuth</span>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 NST Student Developer Club — Newton School of Technology. All rights reserved.</p>
+            </div>
         </div>
-      </a>
+    </footer>
 
-      <a href="https://github.com/nst-sdc/Personalized-Academic-Tracker" target="_blank" rel="noopener noreferrer" class="creation-card" data-animate>
-        <span class="creation-card__accent"></span>
-        <div class="creation-card__header">
-          <span class="creation-card__badge">PWA Web App</span>
-          <span class="creation-card__link-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </span>
-        </div>
-        <h3>Academic &amp; Attendance Tracker</h3>
-        <p>A smart, mobile-first progressive web app helping university students track coursework grades, monitor attendance minimums, and manage assignments.</p>
-        <div class="creation-card__tags">
-          <span>React</span><span>PWA</span><span>Node.js</span><span>MongoDB</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Community Section -->
-  <section class="section" id="community">
-    <div class="section__header" data-animate>
-      <span class="section__tag">Get Involved</span>
-      <h2 class="section__title">Join the Community.<br />Make an Impact.</h2>
-      <p class="section__desc">
-        Whether you're a complete beginner or a seasoned coder, there's a place for you here. Explore repositories,
-        contribute to projects, and grow alongside the brightest minds at NST.
-      </p>
-    </div>
-
-    <div class="community-highlights">
-      <div class="highlight" data-animate>
-        <div class="highlight__icon">🔍</div>
-        <h4>Explore</h4>
-        <p>Check out our repositories and look for beginner-friendly issues.</p>
-      </div>
-      <div class="highlight" data-animate>
-        <div class="highlight__icon">🍴</div>
-        <h4>Fork &amp; PR</h4>
-        <p>Make meaningful contributions to our open-source projects.</p>
-      </div>
-      <div class="highlight" data-animate>
-        <div class="highlight__icon">🤝</div>
-        <h4>Collaborate</h4>
-        <p>Engage with members, propose new ideas, and help us improve.</p>
-      </div>
-      <div class="highlight" data-animate>
-        <div class="highlight__icon">📈</div>
-        <h4>Learn &amp; Grow</h4>
-        <p>Participate in workshops, events, and mentorship programs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer CTA -->
-  <section class="footer-cta" id="footer-cta">
-    <div class="footer-cta__orb" aria-hidden="true"></div>
-
-    <div class="footer-cta__content" data-animate>
-      <h2>Ready to contribute?</h2>
-      <p>
-        Explore our repositories for beginner-friendly issues, follow our contribution guidelines,
-        and submit a pull request. Let's code, create, and contribute to make a difference!
-      </p>
-      <a href="join.html" class="btn btn--primary btn--lg">
-        Join NST SDC
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <a href="#" class="navbar__logo">
-          <img src="logo.png" alt="NST SDC Logo" class="navbar__logo-img" />
-          <span>NST <span>SDC</span></span>
-        </a>
-        <p>A vibrant community of tech enthusiasts, developers, and innovators at Newton School of Technology.</p>
-      </div>
-      <div class="footer__links">
-        <div>
-          <h5>Navigate</h5>
-          <a href="#about">About Us</a>
-          <a href="#domains">What We Do</a>
-          <a href="#initiatives">Initiatives</a>
-          <a href="#projects">Projects</a>
-          <a href="#community">Community</a>
-        </div>
-        <div>
-          <h5>Connect</h5>
-          <a href="https://www.linkedin.com/company/nst-sdc/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://x.com/NSTSDC_" target="_blank" rel="noopener">X (Twitter)</a>
-          <a href="https://www.instagram.com/devclub.nst/" target="_blank" rel="noopener">Instagram</a>
-          <a href="mailto:support@nstsdc.org">Email</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p>&copy; 2026 NST Student Developer Club — Newton School of Technology. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- GSAP for Smooth Animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

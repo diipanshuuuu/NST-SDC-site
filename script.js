@@ -1,181 +1,108 @@
-;(function () {
-  'use strict'
+;(function() {
+  'use strict';
 
-  // Scroll animations with GSAP
-  gsap.registerPlugin(ScrollTrigger)
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  if (!prefersReducedMotion) {
-    // Reveal all elements immediately before animating so they don't stay hidden
-    gsap.set('[data-animate]', { visibility: 'visible' })
+  document.addEventListener('DOMContentLoaded', () => {
     
-    // Animate hero items
-    const heroItems = document.querySelectorAll('.hero__content > *')
-    gsap.from(heroItems, {
-      autoAlpha: 0,
-      y: 24,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power2.out',
-      delay: 0.2
-    })
-
-    // Animate other sections on scroll
-    const sections = document.querySelectorAll('section:not(.hero), footer, .footer-cta')
-    sections.forEach(sec => {
-      const children = sec.querySelectorAll('[data-animate]')
-      if (children.length) {
-        gsap.from(children, {
-          autoAlpha: 0,
-          y: 30,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top 85%',
-          }
-        })
-      }
-    })
-  } else {
-    // Fallback for reduced motion
-    document.querySelectorAll('[data-animate]').forEach(el => {
-      el.style.opacity = 1
-      el.style.transform = 'none'
-    })
-  }
-
-  // Floating continuous animations for background orbs (if motion is allowed)
-  if (!prefersReducedMotion && window.gsap) {
-    gsap.to('.hero__orb--1', {
-      y: -30, x: 20, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut'
-    })
-    gsap.to('.hero__orb--2', {
-      y: 40, x: -30, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1
-    })
-    gsap.to('.hero__orb--3', {
-      y: -50, x: 40, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 2
-    })
+    // 1. Scroll Animations & prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateElements = document.querySelectorAll('[data-animate]');
     
-    // Parallax on mousemove for orbs
-    document.addEventListener('mousemove', (e) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 50
-      const y = (window.innerHeight / 2 - e.clientY) / 50
-      
-      gsap.to('.hero__orb', {
-        x: x,
-        y: y,
-        duration: 1,
-        ease: 'power2.out',
-        overwrite: 'auto'
-      })
-    })
-  }
-
-  // Card mouse spotlight
-  const spotlightCards = document.querySelectorAll('[data-spotlight]')
-  spotlightCards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      card.style.setProperty('--mouse-x', `${x}px`)
-      card.style.setProperty('--mouse-y', `${y}px`)
-    })
-
-    card.addEventListener('mouseleave', () => {
-      card.style.removeProperty('--mouse-x')
-      card.style.removeProperty('--mouse-y')
-    })
-  })
-
-  // Sticky navbar
-  const navbar = document.getElementById('navbar')
-  const handleNavScroll = () => {
-    if (window.scrollY > 60) {
-      navbar.classList.add('navbar--scrolled')
+    if (prefersReducedMotion) {
+      animateElements.forEach(el => el.classList.add('visible'));
     } else {
-      navbar.classList.remove('navbar--scrolled')
+      const animateObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      animateElements.forEach(el => animateObserver.observe(el));
     }
-  }
-  window.addEventListener('scroll', handleNavScroll, { passive: true })
-  handleNavScroll()
 
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburger')
-  const navLinks = document.getElementById('navLinks')
-
-  hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('navbar__links--open')
-    hamburger.classList.toggle('navbar__hamburger--active', isOpen)
-    hamburger.setAttribute('aria-expanded', String(isOpen))
-  })
-
-  navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('navbar__links--open')
-      hamburger.classList.remove('navbar__hamburger--active')
-      hamburger.setAttribute('aria-expanded', 'false')
-    })
-  })
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const targetId = anchor.getAttribute('href')
-      if (targetId === '#') return
-      const target = document.querySelector(targetId)
-      if (target) {
-        e.preventDefault()
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    })
-  })
-
-  // Active section nav highlight
-  const sections = document.querySelectorAll('section[id]')
-  const navAnchors = document.querySelectorAll('.navbar__links a')
-
-  const activeLinkObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id')
-          navAnchors.forEach((a) => {
-            a.classList.toggle(
-              'active',
-              a.getAttribute('href') === `#${id}`
-            )
-          })
+    // 2. Sticky Navbar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          navbar.classList.add('navbar--scrolled');
+        } else {
+          navbar.classList.remove('navbar--scrolled');
         }
-      })
-    },
-    { threshold: 0.3 }
-  )
-  sections.forEach((sec) => activeLinkObserver.observe(sec))
-
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle')
-
-  const applyTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme)
-    if (themeToggle) {
-      themeToggle.setAttribute('aria-checked', theme === 'light' ? 'true' : 'false')
+      }, { passive: true });
     }
-    try {
-      localStorage.setItem('nst_theme', theme)
-    } catch (e) {}
-  }
 
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark'
-  if (themeToggle) {
-    themeToggle.setAttribute('aria-checked', currentTheme === 'light' ? 'true' : 'false')
-    themeToggle.addEventListener('click', () => {
-      const active = document.documentElement.getAttribute('data-theme') || 'dark'
-      const nextTheme = active === 'light' ? 'dark' : 'light'
-      applyTheme(nextTheme)
-    })
-  }
-})()
+    // 3. Mobile Menu
+    const hamburger = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('nav-links--open');
+        hamburger.classList.toggle('menu-toggle--active');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Close menu on link click
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('nav-links--open');
+          hamburger.classList.remove('menu-toggle--active');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // 4. Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // 5. Active Section Highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navItems.forEach(item => {
+            item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // 6. Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('nst_theme', newTheme);
+      });
+    }
+
+  });
+})();
