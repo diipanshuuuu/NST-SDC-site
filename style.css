@@ -655,15 +655,13 @@ a:focus, button:focus, input:focus {
 
 /* Scroll Animation */
 [data-animate] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  visibility: hidden;
 }
 
-[data-animate].visible {
-  opacity: 1;
-  transform: translateY(0);
+.no-js [data-animate] {
+  visibility: visible;
 }
+
 
 /* Responsive */
 @media (max-width: 1024px) {

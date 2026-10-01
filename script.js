@@ -7,7 +7,7 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion || typeof gsap === 'undefined') {
-      document.querySelectorAll('[data-animate]').forEach(el => el.classList.add('visible'));
+      document.querySelectorAll('[data-animate]').forEach(el => el.style.visibility = 'visible');
     } else {
       gsap.registerPlugin(ScrollTrigger);
       
