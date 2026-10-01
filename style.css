@@ -142,17 +142,25 @@ img {
   background: linear-gradient(90deg, transparent, rgba(26, 115, 232, 0.3), rgba(77, 163, 255, 0.3), transparent);
 }
 
-/* Scroll Animations */
-
-[data-animate] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+/* Accessibility: Keyboard Focus */
+:focus-visible {
+  outline: 2px solid var(--accent-start);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.btn:focus-visible, .bento__card:focus-visible, .project-card:focus-visible {
+  outline-offset: 6px;
 }
 
-[data-animate].visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Scroll Animations */
+
+/* Animations handled by GSAP in script.js */
+[data-animate] {
+  /* JS fallback applied if needed, but GSAP uses .from() which requires elements to be visible in CSS natively */
+  visibility: hidden;
+}
+.no-js [data-animate] {
+  visibility: visible;
 }
 
 /* stagger children */
