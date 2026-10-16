@@ -36,8 +36,8 @@ I built this custom version of the **NST Student Developer Club (NST SDC)** site
 No build step or dependencies are needed. Clone the repository and open `index.html` directly in your browser, or run a local server:
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
+git clone https://github.com/diipanshuuuu/NST-SDC-site
+cd NST-SDC-site
 
 # Start a local server with Python
 python3 -m http.server 8000
